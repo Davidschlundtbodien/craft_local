@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_14_180008) do
+ActiveRecord::Schema.define(version: 2019_06_14_190303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "beer_formats", force: :cascade do |t|
+    t.integer "beer_id"
+    t.integer "format_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "beers", force: :cascade do |t|
     t.string "name"
@@ -38,6 +45,13 @@ ActiveRecord::Schema.define(version: 2019_06_14_180008) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "event_beers", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "beer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.datetime "scheduled_date"
@@ -45,6 +59,14 @@ ActiveRecord::Schema.define(version: 2019_06_14_180008) do
     t.text "content"
     t.string "image"
     t.integer "brewery_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "formats", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.decimal "total_volume_oz", precision: 9, scale: 3
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

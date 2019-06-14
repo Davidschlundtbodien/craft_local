@@ -1,0 +1,2 @@
+class EventBeer < ApplicationRecord
+end

@@ -1,0 +1,3 @@
+class BeerFormat < ApplicationRecord
+  
+end
