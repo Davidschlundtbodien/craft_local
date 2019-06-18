@@ -1,0 +1,10 @@
+json.id beer.id
+json.name beer.name
+json.style beer.style
+json.abv beer.abv
+json.srm beer.srm
+json.description beer.description
+json.glassware beer.glassware
+json.image beer.image
+json.abv beer.abv
+json.formats beer.formats
