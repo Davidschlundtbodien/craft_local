@@ -44,7 +44,7 @@ class Api::EventsController < ApplicationController
         @current =EventBeer.where(event_id: @event.id)
         @current.destroy_all
 
-        beers = params[:beers].split("").map(&:to_i)
+        beers = params[:beers].split(",").map(&:to_i)
         beers.each do |beer|
           EventBeer.create(beer_id: beer, event_id: @event.id)
         end 
@@ -61,7 +61,7 @@ class Api::EventsController < ApplicationController
 
     @current =EventBeer.where(event_id: @event.id)
     @current.destroy_all
-    
+
     @event.destroy
     render json: {message: "Event successfully Cancelled!"}
   end

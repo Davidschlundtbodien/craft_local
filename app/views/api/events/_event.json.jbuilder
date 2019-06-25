@@ -1,7 +1,15 @@
 json.id event.id
 json.title event.title
-json.scheduled_date event.scheduled_date
+json.scheduled_date event.date
 json.location event.location
 json.content event.content
-json.beers event.beers
 json.image event.image
+
+json.beers event.beers.each do |beer|
+  json.id beer.id
+  json.name beer.name
+  json.style beer.style
+  json.abv beer.abv
+  json.image beer.image
+  json.brewery beer.brewery.name
+end

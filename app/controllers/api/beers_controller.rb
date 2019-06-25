@@ -53,7 +53,7 @@ class Api::BeersController < ApplicationController
         @current = BeerFormat.where(beer_id: @beer.id)
         @current.destroy_all
 
-        formats = params[:formats].split("").map(&:to_i)
+        formats = params[:formats].split(",").map(&:to_i)
         formats.each do |format|
           BeerFormat.create(beer_id: @beer.id, format_id: format)
         end 
@@ -66,7 +66,7 @@ class Api::BeersController < ApplicationController
 
   def destroy
     @beer = Beer.find(params[:id])
-    
+
     @current = BeerFormat.where(beer_id: @beer.id)
     @current.destroy_all
 
