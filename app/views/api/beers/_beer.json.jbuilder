@@ -7,6 +7,7 @@ json.srm beer.srm
 json.description beer.description
 json.glassware beer.glassware
 json.image beer.image
+json.brewery beer.brewery.name
 json.last_updated beer.last_updated
 json.released beer.released
 
