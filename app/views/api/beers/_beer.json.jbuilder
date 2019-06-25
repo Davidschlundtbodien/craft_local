@@ -11,6 +11,12 @@ json.brewery beer.brewery.name
 json.last_updated beer.last_updated
 json.released beer.released
 
+json.events beer.events.each do |event|
+  json.id event.id
+  json.title event.title
+  json.image event.image
+end  
+
 json.formats beer.formats.each do |format|
   json.id format.id
   json.name format.name
