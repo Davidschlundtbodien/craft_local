@@ -20,11 +20,5 @@ Rails.application.routes.draw do
     # post "/breweries" => "breweries#create"
     patch "/breweries/:id" => "breweries#update"
     # delete "/breweries/:id" => "breweries#destroy"
-
-    #Join tables
-    post "/beer_formats" => "beer_formats#create"
-    delete "/beer_formats/:id" => "beer_formats#destroy"
-    post "/event_beers" => "event_beers#create"
-    delete "/event_beers/:id" => "event_beers#destroy"
   end
 end
