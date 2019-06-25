@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_14_190303) do
+ActiveRecord::Schema.define(version: 2019_06_21_184909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,10 +65,12 @@ ActiveRecord::Schema.define(version: 2019_06_14_190303) do
 
   create_table "formats", force: :cascade do |t|
     t.string "name"
-    t.string "type"
-    t.decimal "total_volume_oz", precision: 9, scale: 3
+    t.string "unit_type"
+    t.decimal "single_unit_volume", precision: 9, scale: 3
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "pack"
+    t.integer "case"
   end
 
 end

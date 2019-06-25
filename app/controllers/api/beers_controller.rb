@@ -23,6 +23,12 @@ class Api::BeersController < ApplicationController
       brewery_id: params[:brewery_id]
     )
     if @beer.save
+
+      formats = params[:formats].split("").map(&:to_i)
+      formats.each do |format|
+        BeerFormat.create(beer_id: @beer.id, format_id: format)
+      end 
+
       render 'show.json.jbuilder'
     else
       render json: {errors: @beer.errors.full_messages}, status: 422
@@ -42,6 +48,16 @@ class Api::BeersController < ApplicationController
     @beer.abv = params[:abv] || @beer.abv
 
     if @beer.save
+      if params[:formats]
+        
+        @current = BeerFormat.where(beer_id: @beer.id)
+        @current.destroy_all
+
+        formats = params[:formats].split("").map(&:to_i)
+        formats.each do |format|
+          BeerFormat.create(beer_id: @beer.id, format_id: format)
+        end 
+      end
       render 'show.json.jbuilder'
     else
       render json: {errors: @beer.errors.full_messages}, status: 422
@@ -50,6 +66,10 @@ class Api::BeersController < ApplicationController
 
   def destroy
     @beer = Beer.find(params[:id])
+    
+    @current = BeerFormat.where(beer_id: @beer.id)
+    @current.destroy_all
+
     @beer.destroy
     render json: {message: "Beer successfully destroyed!"}
   end
