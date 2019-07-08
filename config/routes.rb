@@ -17,8 +17,14 @@ Rails.application.routes.draw do
     #Brewery routes
     get "/breweries" => "breweries#index"
     get "/breweries/:id" => "breweries#show"
-    # post "/breweries" => "breweries#create"
+    post "/breweries" => "breweries#create"
     patch "/breweries/:id" => "breweries#update"
     # delete "/breweries/:id" => "breweries#destroy"
+
+    #Formats
+    get "/formats" => "formats#index"
+
+    #Sessions
+    post "/sessions" => "sessions#create"
   end
 end

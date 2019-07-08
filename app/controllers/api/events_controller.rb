@@ -1,4 +1,7 @@
 class Api::EventsController < ApplicationController
+
+  before_action :authenticate_user, except: [:show, :index]
+
   def index
     @events = Event.all()
     render 'index.json.jbuilder'
@@ -16,13 +19,13 @@ class Api::EventsController < ApplicationController
       location: params[:location],
       content: params[:content],
       image: params[:image],
-      brewery_id: params[:brewery_id]
+      brewery_id: current_user.id
     )
     if @event.save
-      beers = params[:beers].split("").map(&:to_i)
-      beers.each do |beer|
-        EventBeer.create(event_id: @event.id, beer_id: beer)
-      end 
+      # beers = params[:beers].split("").map(&:to_i)
+      # beers.each do |beer|
+        # EventBeer.create(event_id: @event.id, beer_id: beer)
+      # end 
       render 'show.json.jbuilder'
     else
       render json: {errors: @event.errors.full_messages}, status: 422

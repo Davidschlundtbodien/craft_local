@@ -1,4 +1,7 @@
 class Api::BreweriesController < ApplicationController
+
+  before_action :authenticate_user, except: [:show, :index, :create]
+
   def index
     @breweries = Brewery.all()
     render 'index.json.jbuilder'
@@ -7,6 +10,21 @@ class Api::BreweriesController < ApplicationController
   def show
     @brewery = Brewery.find(params[:id])
     render 'show.json.jbuilder'
+  end
+
+  def create
+    brewery = Brewery.new(
+      name: params[:name],
+      email: params[:email],
+      password: params[:password],
+      password_confirmation: params[:password_confirmation]
+    )
+
+    if brewery.save
+      render json: {message: 'Account created successfully'}, status: :created
+    else
+      render json: {errors: brewery.errors.full_messages}, status: :bad_request
+    end
   end
 
   def update

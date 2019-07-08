@@ -1,5 +1,7 @@
 class Api::BeersController < ApplicationController
 
+  before_action :authenticate_user, except: [:show, :index]
+
   def index
     @beers = Beer.all()
     render 'index.json.jbuilder'
@@ -20,13 +22,13 @@ class Api::BeersController < ApplicationController
       glassware: params[:glassware],
       image: params[:image],
       abv: params[:abv],
-      brewery_id: params[:brewery_id]
+      brewery_id: current_user.id
     )
     if @beer.save
-
-      formats = params[:formats].split("").map(&:to_i)
-      formats.each do |format|
-        BeerFormat.create(beer_id: @beer.id, format_id: format)
+      #eval()
+      format_ids = params[:format_ids]
+      format_ids.each do |format_id|
+        BeerFormat.create(beer_id: @beer.id, format_id: format_id)
       end 
 
       render 'show.json.jbuilder'
