@@ -22,10 +22,10 @@ class Api::EventsController < ApplicationController
       brewery_id: current_user.id
     )
     if @event.save
-      # beers = params[:beers].split("").map(&:to_i)
-      # beers.each do |beer|
-        # EventBeer.create(event_id: @event.id, beer_id: beer)
-      # end 
+      beers_ids = params[:beer_ids]
+      beer_ids.each do |beer_id|
+        EventBeer.create(event_id: @event.id, beer_id: beer_id)
+      end 
       render 'show.json.jbuilder'
     else
       render json: {errors: @event.errors.full_messages}, status: 422
@@ -41,17 +41,17 @@ class Api::EventsController < ApplicationController
     @event.content = params[:content] || @event.content
     @event.image = params[:image] || @event.image
 
+    @current =EventBeer.where(event_id: @event.id)
+
+    beers_ids = params[:beer_ids]
+    beer_ids.each do |beer_id|
+      EventBeer.create(event_id: @event.id, beer_id: beer_id)
+    end 
+
     if @event.save
       if params[:beers]
-        
-        @current =EventBeer.where(event_id: @event.id)
+        #EventBeers reset
         @current.destroy_all
-
-        beers = params[:beers].split(",").map(&:to_i)
-        beers.each do |beer|
-          EventBeer.create(beer_id: beer, event_id: @event.id)
-        end 
-
       end
       render 'show.json.jbuilder'
     else

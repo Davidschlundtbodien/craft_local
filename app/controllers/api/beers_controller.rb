@@ -49,16 +49,17 @@ class Api::BeersController < ApplicationController
     @beer.image = params[:image] || @beer.image
     @beer.abv = params[:abv] || @beer.abv
 
+    @current = BeerFormat.where(beer_id: @beer.id)
+    @current.destroy_all
+
+    format_ids = params[:format_ids]
+    format_ids.each do |format_id|
+      BeerFormat.create(beer_id: @beer.id, format_id: format_id)
+    end 
+
     if @beer.save
       if params[:formats]
-        
-        @current = BeerFormat.where(beer_id: @beer.id)
         @current.destroy_all
-
-        formats = params[:formats].split(",").map(&:to_i)
-        formats.each do |format|
-          BeerFormat.create(beer_id: @beer.id, format_id: format)
-        end 
       end
       render 'show.json.jbuilder'
     else

@@ -1,6 +1,6 @@
 class Api::BreweriesController < ApplicationController
 
-  before_action :authenticate_user, except: [:show, :index, :create]
+  before_action :authenticate_user, except: [:index, :show, :create]
 
   def index
     @breweries = Brewery.all()
