@@ -4,6 +4,8 @@ json.scheduled_date event.date
 json.location event.location
 json.content event.content
 json.image event.image
+json.brewery_host event.brewery.name
+json.brewery_id event.brewery.id
 
 json.beers event.beers.each do |beer|
   json.id beer.id
