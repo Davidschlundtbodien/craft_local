@@ -10,6 +10,8 @@ json.beers brewery.beers.each do |beer|
   json.style beer.style
   json.abv beer.abv
   json.image beer.image
+  json.released beer.released
+  json.formats beer.formats
 end
 
 json.events brewery.events.each do |event|
