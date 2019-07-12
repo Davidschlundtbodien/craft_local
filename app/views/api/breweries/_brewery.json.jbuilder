@@ -2,7 +2,7 @@ json.id brewery.id
 json.name brewery.name
 json.email brewery.email
 json.profile_img brewery.profile_img
-json.events brewery.events
+json.address brewery.address
 
 json.beers brewery.beers.each do |beer|
   json.id beer.id

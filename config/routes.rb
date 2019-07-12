@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get "/breweries/:id" => "breweries#show"
     post "/breweries" => "breweries#create"
     patch "/breweries/:id" => "breweries#update"
-    # delete "/breweries/:id" => "breweries#destroy"
+    delete "/breweries/:id" => "breweries#destroy"
 
     #Formats
     get "/formats" => "formats#index"
