@@ -19,4 +19,5 @@ json.events brewery.events.each do |event|
   json.title event.title
   json.image event.image
   json.date event.date
+  json.location event.location
 end
