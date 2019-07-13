@@ -42,17 +42,14 @@ class Api::EventsController < ApplicationController
     @event.image = params[:image] || @event.image
 
     @current =EventBeer.where(event_id: @event.id)
+    @current.destroy_all
 
-    beers_ids = params[:beer_ids]
+    beer_ids = params[:beer_ids]
     beer_ids.each do |beer_id|
       EventBeer.create(event_id: @event.id, beer_id: beer_id)
     end 
 
     if @event.save
-      if params[:beers]
-        #EventBeers reset
-        @current.destroy_all
-      end
       render 'show.json.jbuilder'
     else
       render json: {errors: @event.errors.full_messages}, status: 422

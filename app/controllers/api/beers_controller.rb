@@ -25,7 +25,6 @@ class Api::BeersController < ApplicationController
       brewery_id: current_user.id
     )
     if @beer.save
-      #eval()
       format_ids = params[:format_ids]
       format_ids.each do |format_id|
         BeerFormat.create(beer_id: @beer.id, format_id: format_id)
@@ -58,9 +57,6 @@ class Api::BeersController < ApplicationController
     end 
 
     if @beer.save
-      if params[:formats]
-        @current.destroy_all
-      end
       render 'show.json.jbuilder'
     else
       render json: {errors: @beer.errors.full_messages}, status: 422

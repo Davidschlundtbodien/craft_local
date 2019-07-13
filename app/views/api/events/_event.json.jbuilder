@@ -2,6 +2,8 @@ json.id event.id
 json.title event.title
 json.scheduled_date event.date
 json.location event.location
+json.longitude event.longitude
+json.latitude event.latitude
 json.content event.content
 json.image event.image
 json.brewery_host event.brewery.name

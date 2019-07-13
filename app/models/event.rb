@@ -6,6 +6,9 @@ class Event < ApplicationRecord
 
   validates :title, :scheduled_date, :location, presence: true
 
+  geocoded_by :location
+  after_validation :geocode, :if => :location_changed?
+
   def date
     scheduled_date.strftime("%B %e, %Y")
   end

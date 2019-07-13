@@ -3,6 +3,8 @@ json.name brewery.name
 json.email brewery.email
 json.profile_img brewery.profile_img
 json.address brewery.address
+json.longitude brewery.longitude
+json.latitude brewery.latitude
 
 json.beers brewery.beers.each do |beer|
   json.id beer.id
