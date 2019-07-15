@@ -22,7 +22,7 @@ class Api::EventsController < ApplicationController
       brewery_id: current_user.id
     )
     if @event.save
-      beers_ids = params[:beer_ids]
+      beer_ids = params[:beer_ids]
       beer_ids.each do |beer_id|
         EventBeer.create(event_id: @event.id, beer_id: beer_id)
       end 

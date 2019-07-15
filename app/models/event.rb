@@ -10,6 +10,6 @@ class Event < ApplicationRecord
   after_validation :geocode, :if => :location_changed?
 
   def date
-    scheduled_date.strftime("%B %e, %Y")
+    scheduled_date.strftime("%A, %d %b %Y %l:%M %p")
   end
 end
